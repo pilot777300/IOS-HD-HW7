@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G314" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
+    <entity name="Post" representedClassName="Post" syncable="YES" codeGenerationType="class">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PostsData" representedClassName="PostsData" syncable="YES" codeGenerationType="class"/>
+    <configuration name="Configuration"/>
+    <elements>
+        <element name="Post" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="PostsData" positionX="-58.9517822265625" positionY="-90.18984985351562" width="128" height="43"/>
+        <element name="Entity" positionX="-52.820068359375" positionY="69.14459228515625" width="135.7003784179688" height="43"/>
+    </elements>
+</model>
