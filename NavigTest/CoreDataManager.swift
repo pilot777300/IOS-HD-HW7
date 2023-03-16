@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataManager {
     
@@ -50,10 +51,11 @@ class CoreDataManager {
         self.post1Data = posts
     }
     
-    func addNewPost(author: String, text: String) {
+    func addNewPost(author: String, text: String, image: Data) {
         let post = Post1(context: persistantContainer.viewContext)
         post.author = author
         post.descript = text
+        post.image = image
         saveContext()
         reloadPosts()
     }
@@ -62,5 +64,28 @@ class CoreDataManager {
         persistantContainer.viewContext.delete(post)
         saveContext()
         reloadPosts()
+    }
+    
+  
+    
+    func isEntityAttributeExist(postText: String) -> Bool {
+        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+       // let managedContext = appDelegate.persistentContainer.viewContext
+//        let persistantContainer: NSPersistentContainer = {
+//            let container = NSPersistentContainer(name: "favPost")
+//            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+//                if let error = error as NSError? {
+//                    fatalError("Unresolved error \(error), \(error.userInfo) ")
+//
+//                }
+//
+//            })
+//            return container
+      //  }()
+        let managedContext = persistantContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Post1")
+        fetchRequest.predicate = NSPredicate(format: "name ==[c] %@", postText)
+        let res = try! managedContext.fetch(fetchRequest)
+        return res.count > 0 ? true : false
     }
 }

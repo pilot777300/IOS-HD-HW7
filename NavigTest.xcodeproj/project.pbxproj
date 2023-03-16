@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0403941C29B8CF1D00418A3E /* FavPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403941B29B8CF1D00418A3E /* FavPostTableViewCell.swift */; };
 		0404B6DD297A862F007F0B68 /* LoginScreenViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404B6DC297A862F007F0B68 /* LoginScreenViews.swift */; };
 		040B90B329AF70F000C4D29F /* FavouritePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040B90B229AF70F000C4D29F /* FavouritePostsViewController.swift */; };
 		040B90B829AF7C4200C4D29F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040B90B729AF7C4200C4D29F /* CoreDataManager.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0403941B29B8CF1D00418A3E /* FavPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavPostTableViewCell.swift; sourceTree = "<group>"; };
 		0404B6DC297A862F007F0B68 /* LoginScreenViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViews.swift; sourceTree = "<group>"; };
 		040B90B229AF70F000C4D29F /* FavouritePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePostsViewController.swift; sourceTree = "<group>"; };
 		040B90B729AF7C4200C4D29F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				040B90B229AF70F000C4D29F /* FavouritePostsViewController.swift */,
 				04831FD828F85E930051B471 /* Checker.swift */,
 				04B2693028C26949001AFAEF /* PostTableViewCell.swift */,
+				0403941B29B8CF1D00418A3E /* FavPostTableViewCell.swift */,
 				045EF5EE288567E700D67C0E /* ProfileHeaderView.swift */,
 				0423FE7028AA3E9600CB2D8B /* LogInViewController.swift */,
 				04E5DB8128F057D700CFDAC7 /* UserAuthorisation.swift */,
@@ -388,6 +391,7 @@
 				040B90B829AF7C4200C4D29F /* CoreDataManager.swift in Sources */,
 				04B2693128C26949001AFAEF /* PostTableViewCell.swift in Sources */,
 				04E5DB8228F057D700CFDAC7 /* UserAuthorisation.swift in Sources */,
+				0403941C29B8CF1D00418A3E /* FavPostTableViewCell.swift in Sources */,
 				0404B6DD297A862F007F0B68 /* LoginScreenViews.swift in Sources */,
 				0423FE7128AA3E9600CB2D8B /* LogInViewController.swift in Sources */,
 				04DD0AF32914FB0A00ACCA77 /* CustomButton.swift in Sources */,

@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
         #if DEBUG
         user.fullName = "Fake account"
@@ -40,7 +41,7 @@ class ProfileViewController: UIViewController {
         
         
         
-          postData.append(Post(author: "Elon Musk", description: "Ну классный самолет. Ветерок на посадке только слишком сильно дунул", image: "A330-300.jpg", lokes: 12, views: 33))
+          postData.append(Post(author: "Elon Musk", description: "Ты посмотри, мой друг, какая красота, какая мощь и грация", image: "A330-300.jpg", lokes: 12, views: 33))
         postData.append(Post(author: "Юрий Шевчук", description: "Всюду черти! надави брат, на педаль.", image: "Brothers.tiff", lokes: 50, views: 55))
         postData.append(Post(author: "Cергей Крокодилов", description: "Как тебе такое, Илон Маск?", image: "Boston.jpg", lokes: 132, views: 4567))
         postData.append(Post(author: "Donald Trump", description: "Wow!!! Wonderfull Kukuruznik", image: "Aeroplan.jpeg", lokes: 243, views: 427))
@@ -87,13 +88,11 @@ class ProfileViewController: UIViewController {
         let addPictireButton = UIBarButtonItem(title: "Добавить фото", style: .done, target: nil, action: #selector(addPictireButtonPressed))
         navItem.rightBarButtonItem = addPictireButton
         navbar.setItems([navItem], animated: false)
-        
-      
-        
     }
+    
     @objc func addPictireButtonPressed() {
         
-    }
+        }
     
     }
     
@@ -144,20 +143,38 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let thePost = postData[indexPath.row]
         let vc = FavouritePostsViewController()
         let cdm = CoreDataManager()
-    
-        cdm.addNewPost(author: "\(thePost.author!)", text: "\(thePost.description!)")
-        navigationController?.pushViewController(vc, animated: true)
-        vc.tableView.reloadData()
+        let img = UIImage(named: "\(thePost.image!)")
+        let compressedImg = img!.jpegData(compressionQuality: 1.0)
+        let dataFromCoreManager = vc.coreManager.post1Data
+        var stringForCompare = ""
+        dataFromCoreManager.forEach{ data  in
+             if (thePost.description! ==  data.descript!) {
+                 stringForCompare = data.descript!
+                 addAlertVcContainsPost()
+             }
+         }
+        if !(thePost.description == stringForCompare) {
+            cdm.addNewPost(author: "\(thePost.author!)", text: "\(thePost.description!)", image: compressedImg!)
+            self.navigationController?.pushViewController(vc, animated: true)
+           // self.tabBarController?.tabBar.items?[0].isEnabled = false
+        }
+       
     }
     
     @objc func showGallery(sender: UIButton) {
 //       let vc = FavouritePostsViewController()
-//       //   navigationController?.pushViewController(vc, animated: true)
+//          navigationController?.pushViewController(vc, animated: true)
 //        let x = CoreDataManager()
 //       let y = Post()
 //        x.addNewPost(author: "y.author!", text: "y.description!")
 //        vc.tableView.reloadData()
 //        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func addAlertVcContainsPost() {
+        let alert = UIAlertController(title: "Пост уже в избранном", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

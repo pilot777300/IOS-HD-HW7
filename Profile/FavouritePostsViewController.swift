@@ -12,25 +12,26 @@ class FavouritePostsViewController: UIViewController {
 
     var tableView =  UITableView()
     let coreManager = CoreDataManager.shared
+ 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         setupConstraints()
-       // tableView.reloadData()
+        view.backgroundColor = .white
+        self.title = "Избранные"
     }
+   
     fileprivate func setUpTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .systemGray4
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(FavPostTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 100
         tableView.allowsSelection = false
         tableView.separatorStyle = .singleLine
-        
     }
     
     fileprivate func setupConstraints() {
@@ -44,7 +45,6 @@ class FavouritePostsViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
-
 }
 extension FavouritePostsViewController: UITableViewDelegate, UITableViewDataSource {
    
@@ -52,23 +52,38 @@ extension FavouritePostsViewController: UITableViewDelegate, UITableViewDataSour
         return coreManager.post1Data.count
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        coreManager.reloadPosts()
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FavPostTableViewCell
+        else {
+            fatalError()
+        }
+        
        let post = coreManager.post1Data[indexPath.row]
-            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
 
-        
-        cell.textLabel?.text = post.author
-        cell.detailTextLabel?.text = post.descript
-        //tableView.reloadData()
-        
+        if let data = post.image {
+        let image = UIImage(data: data)
+            cell.postAuthor.text = post.author
+            cell.postText.text = post.descript
+            cell.postImage.image = image
+        }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 

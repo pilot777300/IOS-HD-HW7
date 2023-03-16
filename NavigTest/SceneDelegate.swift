@@ -62,13 +62,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createProfileViewController() -> UINavigationController {
    let profileViewController = FeedViewController()
  
-   profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
+   profileViewController.tabBarItem = UITabBarItem(title: "Игра", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileViewController.title = "Игра"
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
    return UINavigationController(rootViewController: profileViewController)
    }
     
     func createFafouriteController() -> UINavigationController {
         let favController = FavouritePostsViewController()
         favController.tabBarItem = UITabBarItem(title: "Избранные", image: UIImage(systemName: "heart"), tag: 2)
+        favController.title = "Избранные"
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]
+        UINavigationBar.appearance().titleTextAttributes = attributes
         return UINavigationController(rootViewController: favController)
     }
     
